@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 using namespace std;
 
 class Node {
@@ -124,8 +125,7 @@ bool Trie::search(string s) {
 class Corpus {
     public:
         Corpus() { 
-            cRoot = ''; 
-            mMarker = false; 
+            cRoot = ' ';
         }
         void root(string r) {
             cRoot = r;
@@ -148,7 +148,16 @@ bool Corpus::has(string s) {
 };
 
 bool Corpus::load(string s) {
-    return false;
+    ifstream file(cRoot+s);
+    if (!file) {
+        return false;
+    }
+
+    Trie* trie = new Trie();
+    while(getline(*file, line)){
+        trie->add(line)
+    };
+    return true;
 };
 
 Trie* Corpus::get(string s) {
@@ -163,9 +172,13 @@ Trie* Corpus::get(string s) {
 */
 int main(int argc, char* argv[]) {
 
-   cout << "argc = " << argc << endl; 
-   for(int i = 0; i < argc; i++) 
-      cout << "argv[" << i << "] = " << argv[i] << endl; 
+    Corpus* corpus = new Corpus();
+
+    cout << "argc = " << argc << endl; 
+    for(int i = 0; i < argc; i++) {
+
+    }
+    cout << "argv[" << i << "] = " << argv[i] << endl; 
 
 
     Trie* trie = new Trie();
