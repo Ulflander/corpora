@@ -2,8 +2,7 @@
 
 # Build corpus finder
 default:
-	@if [ ! -d bin ]; then mkdir bin; fi
-	@g++ -o bin/corpus main.cpp
+	@g++ -o corpus main.cpp
 
 # Show makefile usage
 help:
