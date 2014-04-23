@@ -138,7 +138,9 @@ socket = net.createConnection(1234, "localhost", function (){
 
 socket.on ('data', function (d){
     var res = d.toString();
+    console.log(res);
+    // 2,en/names,en/places
 });
 
-socket.write('en/words,en/names,en/places,en/companies Keyword');
+socket.write('en/words,en/names,en/places,en/companies paris');
 ```
