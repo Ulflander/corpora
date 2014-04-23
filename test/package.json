@@ -1,0 +1,15 @@
+{
+  "name": "corpora-test",
+  "version": "0.1.0",
+  "description": "Test suite for corpora dictionnary finder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^1.18.2",
+    "chai": "^1.9.1"
+  }
+}

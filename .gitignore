@@ -1,4 +1,5 @@
-bin/corpus
+corpora
+test/node_modules
 
 # Compiled Object files
 *.slo
