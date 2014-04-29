@@ -19,6 +19,7 @@
 // Some utilities functions
 #include "utils.hpp"
 
+
 /* Main namespace */
 using namespace std;
 
@@ -210,15 +211,18 @@ bool Corpora::load(string &s) {
     Trie* trie = new Trie();
     int n = 0;
     while(getline(file, line)){
-        trie->add(line);
-        n ++;
+
+        if (!trie->search(ulf::clean(line))) {
+            trie->add(ulf::clean(line));
+            n ++;
+        }
     };
 
-    if (verbose) {
-        int t1 = ulf::get_time();
-        ulf::debug("Loaded " + ulf::to_string(n) + " keywords from " + s + " in " + 
-            ulf::to_string(t1 - t0) + "ms");
-    }
+
+    int t1 = ulf::get_time();
+    ulf::info("Loaded " + ulf::to_string(n) + " keywords from " + s + " in " + 
+        ulf::to_string(t1 - t0) + "ms");
+
     corpora.insert(make_pair(s, trie));
     return true;
 };
@@ -240,7 +244,7 @@ string process_query(Corpora* corpora, string s) {
         return "0";
     }
     string corpus_files = s.substr(0, loc);
-    string keyword = s.substr(loc + 1, s.length());
+    string keyword = ulf::clean(s.substr(loc + 1, s.length()));
     vector<string> files;
 
 
